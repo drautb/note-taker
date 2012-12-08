@@ -1,0 +1,11 @@
+To Do List:
+- Look/Feel
+	- Make form resizable, components scale appropriately
+	- Allow font to be customizable?
+	- Rich Text Editor?
+	- Add label beneath note showing creation date, last modified date, which updates when saved?
+
+- Note Class
+	- 
+
+

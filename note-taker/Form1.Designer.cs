@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.listBox = new System.Windows.Forms.GroupBox();
-            this.noteBox = new System.Windows.Forms.GroupBox();
-            this.searchBox = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.newNoteButton = new System.Windows.Forms.Button();
-            this.deleteButton = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.searchBox = new System.Windows.Forms.TextBox();
+            this.noteBox = new System.Windows.Forms.GroupBox();
             this.noteTextArea = new System.Windows.Forms.TextBox();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.noteCreatedLabel = new System.Windows.Forms.Label();
+            this.noteModifiedLabel = new System.Windows.Forms.Label();
             this.listBox.SuspendLayout();
             this.noteBox.SuspendLayout();
             this.SuspendLayout();
@@ -44,75 +46,106 @@
             this.listBox.Controls.Add(this.newNoteButton);
             this.listBox.Controls.Add(this.listBox1);
             this.listBox.Controls.Add(this.searchBox);
-            this.listBox.Location = new System.Drawing.Point(12, 12);
+            this.listBox.Location = new System.Drawing.Point(14, 14);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(217, 433);
+            this.listBox.Size = new System.Drawing.Size(253, 500);
             this.listBox.TabIndex = 1;
             this.listBox.TabStop = false;
             this.listBox.Text = "Notes";
             // 
-            // noteBox
-            // 
-            this.noteBox.Controls.Add(this.noteTextArea);
-            this.noteBox.Controls.Add(this.deleteButton);
-            this.noteBox.Location = new System.Drawing.Point(236, 13);
-            this.noteBox.Name = "noteBox";
-            this.noteBox.Size = new System.Drawing.Size(566, 432);
-            this.noteBox.TabIndex = 2;
-            this.noteBox.TabStop = false;
-            // 
-            // searchBox
-            // 
-            this.searchBox.Location = new System.Drawing.Point(6, 20);
-            this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(205, 20);
-            this.searchBox.TabIndex = 0;
-            // 
-            // listBox1
-            // 
-            this.listBox1.BackColor = System.Drawing.SystemColors.Info;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.IntegralHeight = false;
-            this.listBox1.Location = new System.Drawing.Point(6, 46);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(205, 352);
-            this.listBox1.TabIndex = 1;
-            // 
             // newNoteButton
             // 
-            this.newNoteButton.Location = new System.Drawing.Point(6, 404);
+            this.newNoteButton.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newNoteButton.Location = new System.Drawing.Point(7, 466);
             this.newNoteButton.Name = "newNoteButton";
-            this.newNoteButton.Size = new System.Drawing.Size(205, 23);
+            this.newNoteButton.Size = new System.Drawing.Size(239, 27);
             this.newNoteButton.TabIndex = 2;
             this.newNoteButton.Text = "New Note";
             this.newNoteButton.UseVisualStyleBackColor = true;
             // 
+            // listBox1
+            // 
+            this.listBox1.BackColor = System.Drawing.SystemColors.Info;
+            this.listBox1.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.IntegralHeight = false;
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(7, 62);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(238, 396);
+            this.listBox1.TabIndex = 1;
+            // 
+            // searchBox
+            // 
+            this.searchBox.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBox.Location = new System.Drawing.Point(7, 23);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(238, 28);
+            this.searchBox.TabIndex = 0;
+            // 
+            // noteBox
+            // 
+            this.noteBox.Controls.Add(this.noteModifiedLabel);
+            this.noteBox.Controls.Add(this.noteCreatedLabel);
+            this.noteBox.Controls.Add(this.noteTextArea);
+            this.noteBox.Controls.Add(this.deleteButton);
+            this.noteBox.Location = new System.Drawing.Point(275, 15);
+            this.noteBox.Name = "noteBox";
+            this.noteBox.Size = new System.Drawing.Size(660, 498);
+            this.noteBox.TabIndex = 2;
+            this.noteBox.TabStop = false;
+            // 
+            // noteTextArea
+            // 
+            this.noteTextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.noteTextArea.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noteTextArea.Location = new System.Drawing.Point(7, 22);
+            this.noteTextArea.Multiline = true;
+            this.noteTextArea.Name = "noteTextArea";
+            this.noteTextArea.Size = new System.Drawing.Size(646, 436);
+            this.noteTextArea.TabIndex = 1;
+            // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(485, 403);
+            this.deleteButton.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteButton.Location = new System.Drawing.Point(566, 465);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteButton.Size = new System.Drawing.Size(87, 27);
             this.deleteButton.TabIndex = 0;
             this.deleteButton.Text = "Delete Note";
             this.deleteButton.UseVisualStyleBackColor = true;
             // 
-            // noteTextArea
+            // noteCreatedLabel
             // 
-            this.noteTextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.noteTextArea.Location = new System.Drawing.Point(6, 19);
-            this.noteTextArea.Multiline = true;
-            this.noteTextArea.Name = "noteTextArea";
-            this.noteTextArea.Size = new System.Drawing.Size(554, 378);
-            this.noteTextArea.TabIndex = 1;
+            this.noteCreatedLabel.AutoSize = true;
+            this.noteCreatedLabel.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noteCreatedLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.noteCreatedLabel.Location = new System.Drawing.Point(7, 466);
+            this.noteCreatedLabel.Name = "noteCreatedLabel";
+            this.noteCreatedLabel.Size = new System.Drawing.Size(230, 18);
+            this.noteCreatedLabel.TabIndex = 2;
+            this.noteCreatedLabel.Text = "Note created on 12/8/12 at 12:00pm";
+            // 
+            // noteModifiedLabel
+            // 
+            this.noteModifiedLabel.AutoSize = true;
+            this.noteModifiedLabel.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noteModifiedLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.noteModifiedLabel.Location = new System.Drawing.Point(296, 467);
+            this.noteModifiedLabel.Name = "noteModifiedLabel";
+            this.noteModifiedLabel.Size = new System.Drawing.Size(213, 18);
+            this.noteModifiedLabel.TabIndex = 3;
+            this.noteModifiedLabel.Text = "Last saved on 12/8/12 at 12:05pm";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(814, 457);
+            this.ClientSize = new System.Drawing.Size(950, 527);
             this.Controls.Add(this.noteBox);
             this.Controls.Add(this.listBox);
+            this.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MainForm";
@@ -134,6 +167,8 @@
         private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.TextBox noteTextArea;
+        private System.Windows.Forms.Label noteCreatedLabel;
+        private System.Windows.Forms.Label noteModifiedLabel;
 
 
     }
