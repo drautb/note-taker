@@ -30,7 +30,7 @@
         {
             this.listBox = new System.Windows.Forms.GroupBox();
             this.newNoteButton = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.noteListBox = new System.Windows.Forms.ListBox();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.noteBox = new System.Windows.Forms.GroupBox();
             this.noteTextArea = new System.Windows.Forms.TextBox();
@@ -44,7 +44,7 @@
             // listBox
             // 
             this.listBox.Controls.Add(this.newNoteButton);
-            this.listBox.Controls.Add(this.listBox1);
+            this.listBox.Controls.Add(this.noteListBox);
             this.listBox.Controls.Add(this.searchBox);
             this.listBox.Location = new System.Drawing.Point(14, 14);
             this.listBox.Name = "listBox";
@@ -63,17 +63,17 @@
             this.newNoteButton.Text = "New Note";
             this.newNoteButton.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // noteListBox
             // 
-            this.listBox1.BackColor = System.Drawing.SystemColors.Info;
-            this.listBox1.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.IntegralHeight = false;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(7, 62);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(238, 396);
-            this.listBox1.TabIndex = 1;
+            this.noteListBox.BackColor = System.Drawing.SystemColors.Info;
+            this.noteListBox.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noteListBox.FormattingEnabled = true;
+            this.noteListBox.IntegralHeight = false;
+            this.noteListBox.ItemHeight = 18;
+            this.noteListBox.Location = new System.Drawing.Point(7, 62);
+            this.noteListBox.Name = "noteListBox";
+            this.noteListBox.Size = new System.Drawing.Size(238, 396);
+            this.noteListBox.TabIndex = 1;
             // 
             // searchBox
             // 
@@ -163,7 +163,7 @@
         private System.Windows.Forms.GroupBox listBox;
         private System.Windows.Forms.GroupBox noteBox;
         private System.Windows.Forms.Button newNoteButton;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox noteListBox;
         private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.TextBox noteTextArea;
