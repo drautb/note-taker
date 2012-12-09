@@ -47,8 +47,19 @@ namespace note_taker
         {
             created = new DateTime(DateTime.Now.Ticks);
             modified = new DateTime(DateTime.Now.Ticks);
-            text = "        a,  b,  c,  d,  e,  f.   more here.";
+            text = "";
             previewText = "";
+        }
+
+        /**
+         * Constructor used ONLY for testing!
+         */
+        public Note(DateTime created, DateTime modified, String text)
+        {
+            this.created = created;
+            this.modified = modified;
+            this.text = text;
+            UpdatePreviewText();
         }
 
         /**
