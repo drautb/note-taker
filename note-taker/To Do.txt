@@ -5,7 +5,7 @@ To Do List:
 	- Rich Text Editor?
 	- Add label beneath note showing creation date, last modified date, which updates when saved?
 
-- Note Class
-	- 
+- Need to have two note lists, one for ALL notes in memory, then one for notes that fit the search 
+  criteria. The second one is actually displayed.
 
 

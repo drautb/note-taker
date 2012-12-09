@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace note_taker
 {
@@ -26,6 +27,8 @@ namespace note_taker
 
         private String text;
 
+        private String previewText;
+
         /**
          * Private members for internal use only, the user
          * has no knowledge of these whatsoever.
@@ -35,18 +38,17 @@ namespace note_taker
         /**
          * Private Constants
          */
-        private const int MAX_WORDS_IN_PREVIEW = 10;
-        private const int MIN_SPACE_BEFORE_PREVIEW_DATE = 5;
-        private const int PREVIEW_DATE_LENGTH = 8;
+        private const int MAX_WORDS_IN_PREVIEW = 5;
 
         /**
          * Constructor
          */
         public Note()
         {
-            created = new DateTime();
-            modified = new DateTime();
-            text = "";
+            created = new DateTime(DateTime.Now.Ticks);
+            modified = new DateTime(DateTime.Now.Ticks);
+            text = "        a,  b,  c,  d,  e,  f.   more here.";
+            previewText = "";
         }
 
         /**
@@ -98,45 +100,53 @@ namespace note_taker
             }
         }
 
+        public String PreviewText
+        {
+            get
+            {
+                return previewText;
+            }
+            set { }
+        }
+
+        /**
+         * These properties are used to populate the data grid control
+         */
+        public String ModifiedText
+        {
+            get
+            {
+                if (modified.Date == DateTime.Today)
+                    return modified.ToString("h:mm tt");
+                else
+                    return modified.ToString("M/d/yy");
+            }
+            set { }
+        }
+
         /**
          * Public Methods
          */
 
+
         /**
-         * previewString() returns a string that is shown for this note in the list
-         * of notes on the left side of the application. It includes the first few
-         * words of the note, as well as the last modified date, padded with spaces
-         * so as to appear right aligned.
-         * 
-         * Ex:
-         *      Note Text: "My favorite things to do over break are spend time with 
-         *                  family and program"
-         *      Modified Date: 12/8/12 12:37pm
-         *      
-         *      previewString will return something like this:
-         *          "My favorite things      12/8/12"
-         *      or
-         *          "My favorite things      12:37pm" 
-         *      If the last modified date is the current day.
-         *      
-         * The total number of words inlcuded is based on the available space for 
-         * each entry in the list of notes (listWidthPx) and the height of the font
-         * being used.
-         * 
-         * NOTE: It's seeming pretty complicated right now to make this work well...
-         *       I'm going to look into other ways. For right now, it's just returning
-         *       the first 30 characters of the text.
+         * Private Methods
          */
-        public String previewString(/*int listWidthPx, int fontHeight*/)
+
+        /**
+         * This method should be called anytime the preview text needs to 
+         * be updated. It can be intense though on long notes because of 
+         * the "Split" call, so I'm anticipating only calling it when the 
+         * notes are saved to file.
+         */
+        private void UpdatePreviewText()
         {
-            /*
-            int avgCharWidthPx = fontHeight / 2;
-
             char[] delimiters = { ' ' };
-            String[] firstWords = text.Split(delimiters, MAX_WORDS_IN_PREVIEW, StringSplitOptions.RemoveEmptyEntries);
-            */
+            String[] words = text.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
 
-            return text.Substring(0, 30);
+            previewText = "";
+            for (int w = 0; w < MAX_WORDS_IN_PREVIEW && w < words.Length; w++)
+                previewText += words[w] + " ";
         }
     }
 }
