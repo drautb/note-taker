@@ -51,6 +51,10 @@ namespace note_taker
 
                 fileStream.Close();
             }
+            catch (FileNotFoundException e)
+            {
+                return null;
+            }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);

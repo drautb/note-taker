@@ -32,6 +32,7 @@ namespace note_taker
          * Constants
          */
         private const String NOTES_FILENAME = "notes.bin";
+        private const String NOTES_BACKUP_FILENAME = "notes.bak";
 
         /**
          * Constructor
@@ -75,11 +76,12 @@ namespace note_taker
          * Subroutine to load notes from file into the program
          */
         private void LoadNotes()
-        {
-            //InsertTestNotes();
+        {            
             allNotes = serializer.DeserializeObject(NOTES_FILENAME);
             if (allNotes == null)
                 allNotes = new NoteList();
+
+            //InsertTestNotes();
         }
 
         /**
@@ -150,7 +152,8 @@ namespace note_taker
          */
         private bool SaveAllNotes()
         {
-            if (serializer.SerializeObject(NOTES_FILENAME, allNotes))
+            if (serializer.SerializeObject(NOTES_FILENAME, allNotes) &&
+                serializer.SerializeObject(NOTES_BACKUP_FILENAME, allNotes))
                 return true;
 
             return false;

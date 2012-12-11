@@ -77,7 +77,7 @@
             this.notesDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.notesDataGrid.Size = new System.Drawing.Size(240, 401);
             this.notesDataGrid.TabIndex = 3;
-            this.notesDataGrid.SelectionChanged += new System.EventHandler(notesDataGrid_SelectionChanged);
+            this.notesDataGrid.SelectionChanged += new System.EventHandler(this.notesDataGrid_SelectionChanged);
             // 
             // textColumn
             // 
@@ -155,6 +155,8 @@
             // 
             // noteTextArea
             // 
+            this.noteTextArea.AcceptsReturn = true;
+            this.noteTextArea.AcceptsTab = true;
             this.noteTextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.noteTextArea.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.noteTextArea.Location = new System.Drawing.Point(7, 22);
@@ -188,13 +190,13 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MainForm";
             this.Text = "Note Taker";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.listBox.ResumeLayout(false);
             this.listBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.notesDataGrid)).EndInit();
             this.noteBox.ResumeLayout(false);
             this.noteBox.PerformLayout();
             this.ResumeLayout(false);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 
         }
 
