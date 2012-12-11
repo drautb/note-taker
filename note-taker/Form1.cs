@@ -22,9 +22,16 @@ namespace note_taker
         private int selectedNoteIdx = -1; // Index of selected note in displayNotes
         private Note selectedNote;
 
+        private NoteListSerializer serializer = new NoteListSerializer();
+
         // Component References
         DataGridViewColumn previewTextCol;
         DataGridViewColumn modifiedTextCol;
+
+        /**
+         * Constants
+         */
+        private const String NOTES_FILENAME = "notes.bin";
 
         /**
          * Constructor
@@ -69,7 +76,10 @@ namespace note_taker
          */
         private void LoadNotes()
         {
-            InsertTestNotes();
+            //InsertTestNotes();
+            allNotes = serializer.DeserializeObject(NOTES_FILENAME);
+            if (allNotes == null)
+                allNotes = new NoteList();
         }
 
         /**
@@ -101,7 +111,8 @@ namespace note_taker
         }
 
         /**
-         * 
+         * This method is called when the selected row in the note list changes.
+         * It updates all the necessary components to reflect the change.
          */
         private void ChangeSelectedNote(int displayNotesIdx)
         {
@@ -133,6 +144,17 @@ namespace note_taker
                 noteModifiedLabel.Text += "on " + selectedNote.ModifiedText;
         }
 
+        /**
+         * Saves all notes in memory to file, regardless of when they were last saved
+         * or whether or not they were changed.
+         */
+        private bool SaveAllNotes()
+        {
+            if (serializer.SerializeObject(NOTES_FILENAME, allNotes))
+                return true;
+
+            return false;
+        }
 
         /**
          * Form Component Event Responders
@@ -171,7 +193,12 @@ namespace note_taker
 
         private void MainForm_FormClosing(Object sender, FormClosingEventArgs e)
         {
-            MessageBox.Show("Form is closing! Save all the notes!");
+            // If the save fails, cancel the close and alert the user.
+            if (!SaveAllNotes())
+            {
+                e.Cancel = true;
+                MessageBox.Show("For some reason your notes could not be saved. You may try again, or move important notes to another program to ensure they are not lost.");
+            }
         }
 
         /************************

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace note_taker
 {
@@ -16,7 +18,8 @@ namespace note_taker
      * The "Title" shown in the left column is just an excerpt from the first part of the note.
      * 
      */
-    class Note
+    [Serializable()]
+    class Note : ISerializable
     {
         /**
          * Private Members
@@ -51,6 +54,20 @@ namespace note_taker
             text = "";
             oldText = "";
             previewText = "";
+
+            hasChanged = false;
+        }
+
+        public Note(SerializationInfo info, StreamingContext ctxt)
+        {
+            created = (DateTime)info.GetValue("created", typeof(DateTime));
+            modified = (DateTime)info.GetValue("modified", typeof(DateTime));
+            text = (String)info.GetValue("text", typeof(String));
+
+            oldText = text;
+            UpdatePreviewText();
+
+            hasChanged = false;
         }
 
         /**
@@ -157,7 +174,12 @@ namespace note_taker
         /**
          * Public Methods
          */
-
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("created", created);
+            info.AddValue("modified", modified);
+            info.AddValue("text", text);
+        }
 
         /**
          * Private Methods

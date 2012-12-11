@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="Note.cs" />
     <Compile Include="NoteList.cs" />
+    <Compile Include="NoteListSerializer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
