@@ -51,7 +51,7 @@ namespace note_taker
 
                 fileStream.Close();
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 return null;
             }

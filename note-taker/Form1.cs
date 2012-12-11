@@ -25,6 +25,8 @@ namespace note_taker
 
         private NoteListSerializer serializer = new NoteListSerializer();
 
+        private Timer saveTimer = new Timer();
+
         // Component References
         private DataGridViewColumn previewTextCol;
         private DataGridViewColumn modifiedTextCol;
@@ -39,26 +41,21 @@ namespace note_taker
         private const int FONT_TO_TEMPLATE_WIDTH_RATIO = 4;
         private const int TAB_WIDTH = 4;
 
+        private const int TIME_BETWEEN_SAVES = 60000; // 1 minute
+
         /**
          * Constructor
          */
         public MainForm()
         {
             InitializeComponent();
+            InitDataGrid();
+            InitSaveTimer();
 
             SetTabWidth(noteTextArea, TAB_WIDTH);
 
-            InitDataGrid();
-
             LoadNotes();
             RefreshDisplayNotes();
-
-            /**
-             * RUN TESTS
-             */
-            /*
-            Test();
-            /**/
         }
 
         /**
@@ -98,6 +95,29 @@ namespace note_taker
         }
 
         /**
+         * Subroutine to setup the save timer
+         */
+        private void InitSaveTimer()
+        {
+            saveTimer.Interval = TIME_BETWEEN_SAVES;
+            saveTimer.Tick += new System.EventHandler(SaveTimerTick);
+            saveTimer.Enabled = true;
+
+            ResetSaveTimer();
+        }
+
+        private void ResetSaveTimer()
+        {
+            saveTimer.Stop();
+            saveTimer.Start();
+        }
+
+        private void SaveTimerTick(Object sender, EventArgs e)
+        {
+            SaveAllNotes();
+        }
+
+        /**
          * Subroutine to load notes from file into the program
          */
         private void LoadNotes()
@@ -105,8 +125,6 @@ namespace note_taker
             allNotes = serializer.DeserializeObject(NOTES_FILENAME);
             if (allNotes == null)
                 allNotes = new NoteList();
-
-            //InsertTestNotes();
         }
 
         /**
@@ -177,8 +195,18 @@ namespace note_taker
          */
         private bool SaveAllNotes()
         {
-            if (serializer.SerializeObject(NOTES_FILENAME, allNotes) &&
-                serializer.SerializeObject(NOTES_BACKUP_FILENAME, allNotes))
+            if (serializer.SerializeObject(NOTES_FILENAME, allNotes))
+                return true;
+
+            return false;
+        }
+
+        /**
+         * Saves all notes to regular file as well as to backup file
+         */
+        private bool BackupNotes()
+        {
+            if (SaveAllNotes() && serializer.SerializeObject(NOTES_BACKUP_FILENAME, allNotes))
                 return true;
 
             return false;
@@ -217,72 +245,19 @@ namespace note_taker
         {
             if (selectedNote != null)
                 selectedNote.Text = noteTextArea.Text;
+
+            notesDataGrid.Invalidate();
         }
 
         private void MainForm_FormClosing(Object sender, FormClosingEventArgs e)
         {
             // If the save fails, cancel the close and alert the user.
-            if (!SaveAllNotes())
+            if (!BackupNotes())
             {
                 e.Cancel = true;
-                MessageBox.Show("For some reason your notes could not be saved. You may try again, or move important notes to another program to ensure they are not lost.");
+                MessageBox.Show("For some reason your notes could not be saved. You may try again, or move important notes to another program to ensure they are not lost.",
+                                "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        /************************
-         * TESTING METHODS
-         */
-        private bool Test()
-        {
-            InsertTestNotes();
-            RefreshDisplayNotes();
-
-            Note currentNote = displayNotes[2];
-
-            currentNote.Text = "New Test Text!";
-            String newString = "New Test Text!";
-
-            Debug.Assert(currentNote.Text == newString);
-            Debug.Assert(displayNotes[2].Text == newString);
-            Debug.Assert(allNotes[2].Text == newString);
-
-            newString = "WORD";
-
-            allNotes[2].Text = "WORD";
-
-            Debug.Assert(currentNote.Text == newString);
-            Debug.Assert(displayNotes[2].Text == newString);
-            Debug.Assert(allNotes[2].Text == newString);
-
-            return true;
-        }
-
-        private void InsertTestNotes()
-        {
-            int numNotes = 5;
-
-            DateTime[] creationDates = 
-            {
-                new DateTime(1999, 8, 11, 17, 32, 03),
-                new DateTime(2001, 12, 25, 3, 23, 00),
-                new DateTime(2007, 6, 6, 2, 0, 0),
-                new DateTime(2008, 12, 17, 3, 22, 0),
-                new DateTime(2012, 11, 10, 4, 14, 0)
-            };
-
-            DateTime[] modifiedTimes = creationDates;
-
-            String[] noteTexts = 
-            {
-                "This is the first test note that I'm adding to the set.",
-                "Test Note #2\r\nI wonder if this newline actually works... In other news, this was Christmas in 2001",
-                "I AM NUMBER 3. What a great place to be! This also happens to be tthe day that I graduated from high school!",
-                "This is number 4, gondola! This was the day that I entered the MTC to serve a mission in Paris, France.",
-                "You know I think gondola's are pretty cool boats. This is the day that I proposed to my girlfriend, Brittney Barlow."
-            };
-
-            for (int n=0; n<numNotes; n++)
-                allNotes.Add(new Note(creationDates[n], modifiedTimes[n], noteTexts[n]));
         }
     }
 }

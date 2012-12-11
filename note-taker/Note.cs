@@ -34,12 +34,6 @@ namespace note_taker
         private String previewText;
 
         /**
-         * Private members for internal use only, the user
-         * has no knowledge of these whatsoever.
-         */
-        private bool hasChanged;
-
-        /**
          * Private Constants
          */
         private const int MAX_WORDS_IN_PREVIEW = 5;
@@ -54,8 +48,6 @@ namespace note_taker
             text = "";
             oldText = "";
             previewText = "";
-
-            hasChanged = false;
         }
 
         public Note(SerializationInfo info, StreamingContext ctxt)
@@ -65,20 +57,6 @@ namespace note_taker
             text = (String)info.GetValue("text", typeof(String));
 
             oldText = text;
-            UpdatePreviewText();
-
-            hasChanged = false;
-        }
-
-        /**
-         * Constructor used ONLY for testing!
-         */
-        public Note(DateTime created, DateTime modified, String text)
-        {
-            this.created = created;
-            this.modified = modified;
-            this.text = text;
-            this.oldText = text;
             UpdatePreviewText();
         }
 
@@ -130,7 +108,6 @@ namespace note_taker
 
                 text = value;
                 oldText = text;
-                hasChanged = true;
 
                 modified = new DateTime(DateTime.Now.Ticks);
                 
@@ -174,6 +151,23 @@ namespace note_taker
         /**
          * Public Methods
          */
+
+        /**
+         * This method should be called anytime the preview text needs to 
+         * be updated. It can be intense though on long notes because of 
+         * the "Split" call, so I'm anticipating only calling it when the 
+         * notes are saved to file.
+         */
+        public void UpdatePreviewText()
+        {
+            char[] delimiters = { ' ', '\n', '\r' };
+            String[] words = text.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+            previewText = "";
+            for (int w = 0; w < MAX_WORDS_IN_PREVIEW && w < words.Length; w++)
+                previewText += words[w] + " ";
+        }
+
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             info.AddValue("created", created);
@@ -184,21 +178,5 @@ namespace note_taker
         /**
          * Private Methods
          */
-
-        /**
-         * This method should be called anytime the preview text needs to 
-         * be updated. It can be intense though on long notes because of 
-         * the "Split" call, so I'm anticipating only calling it when the 
-         * notes are saved to file.
-         */
-        private void UpdatePreviewText()
-        {
-            char[] delimiters = { ' ', '\n', '\r' };
-            String[] words = text.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-
-            previewText = "";
-            for (int w = 0; w < MAX_WORDS_IN_PREVIEW && w < words.Length; w++)
-                previewText += words[w] + " ";
-        }
     }
 }
