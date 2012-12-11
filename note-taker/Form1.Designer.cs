@@ -30,6 +30,8 @@
         {
             this.listBox = new System.Windows.Forms.GroupBox();
             this.notesDataGrid = new System.Windows.Forms.DataGridView();
+            this.textColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.newNoteButton = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.noteBox = new System.Windows.Forms.GroupBox();
@@ -37,8 +39,6 @@
             this.noteCreatedLabel = new System.Windows.Forms.Label();
             this.noteTextArea = new System.Windows.Forms.TextBox();
             this.deleteButton = new System.Windows.Forms.Button();
-            this.textColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.listBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.notesDataGrid)).BeginInit();
             this.noteBox.SuspendLayout();
@@ -77,7 +77,27 @@
             this.notesDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.notesDataGrid.Size = new System.Drawing.Size(240, 401);
             this.notesDataGrid.TabIndex = 3;
-            this.notesDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.notesDataGrid_CellContentClick);
+            this.notesDataGrid.SelectionChanged += new System.EventHandler(notesDataGrid_SelectionChanged);
+            // 
+            // textColumn
+            // 
+            this.textColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.textColumn.FillWeight = 179.0863F;
+            this.textColumn.HeaderText = "Note";
+            this.textColumn.Name = "textColumn";
+            this.textColumn.ReadOnly = true;
+            this.textColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.textColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // modifiedDateColumn
+            // 
+            this.modifiedDateColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.modifiedDateColumn.FillWeight = 60.9137F;
+            this.modifiedDateColumn.HeaderText = "Modified";
+            this.modifiedDateColumn.Name = "modifiedDateColumn";
+            this.modifiedDateColumn.ReadOnly = true;
+            this.modifiedDateColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.modifiedDateColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // newNoteButton
             // 
@@ -155,26 +175,6 @@
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
-            // textColumn
-            // 
-            this.textColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.textColumn.FillWeight = 179.0863F;
-            this.textColumn.HeaderText = "Note";
-            this.textColumn.Name = "textColumn";
-            this.textColumn.ReadOnly = true;
-            this.textColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.textColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // modifiedDateColumn
-            // 
-            this.modifiedDateColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.modifiedDateColumn.FillWeight = 60.9137F;
-            this.modifiedDateColumn.HeaderText = "Modified";
-            this.modifiedDateColumn.Name = "modifiedDateColumn";
-            this.modifiedDateColumn.ReadOnly = true;
-            this.modifiedDateColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.modifiedDateColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -194,6 +194,7 @@
             this.noteBox.ResumeLayout(false);
             this.noteBox.PerformLayout();
             this.ResumeLayout(false);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 
         }
 

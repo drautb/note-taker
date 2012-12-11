@@ -5,8 +5,13 @@ To Do List:
 	- Rich Text Editor?
 	- Add label beneath note showing creation date, last modified date, which updates when saved?
 
+- I don't wait the first note in the list to become selected again every time a new note is created!
+
+- Also, decide which list will be used during which interactions. (new note, delete note, update note, etc.)
+  - I'm thinking that there will be a "selectedNote" reference that is used for all interaction.
+
 - Test the second note list to make sure that it only has references, not copies. If I change the note referenced
   in the displayNotes list, it should change the note in the allNotes list as well.
-- Also, decide which list will be used during which interactions. (new note, delete note, update note, etc.)
+  - SUCCESS!
 
 

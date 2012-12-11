@@ -26,6 +26,7 @@ namespace note_taker
         private DateTime modified;
 
         private String text;
+        private String oldText; // Used for comparing to see if the text has changed
 
         private String previewText;
 
@@ -48,6 +49,7 @@ namespace note_taker
             created = new DateTime(DateTime.Now.Ticks);
             modified = new DateTime(DateTime.Now.Ticks);
             text = "";
+            oldText = "";
             previewText = "";
         }
 
@@ -59,6 +61,7 @@ namespace note_taker
             this.created = created;
             this.modified = modified;
             this.text = text;
+            this.oldText = text;
             UpdatePreviewText();
         }
 
@@ -105,9 +108,16 @@ namespace note_taker
             }
             set
             {
-                text = value;
+                if (oldText == value)
+                    return;
 
+                text = value;
+                oldText = text;
                 hasChanged = true;
+
+                modified = new DateTime(DateTime.Now.Ticks);
+                
+                UpdatePreviewText();
             }
         }
 
@@ -120,9 +130,18 @@ namespace note_taker
             set { }
         }
 
-        /**
-         * These properties are used to populate the data grid control
-         */
+        public String CreatedText
+        {
+            get
+            {
+                if (created.Date == DateTime.Today)
+                    return created.ToString("h:mm tt");
+                else
+                    return created.ToString("M/d/yy");
+            }
+            set { }
+        }
+
         public String ModifiedText
         {
             get
@@ -152,7 +171,7 @@ namespace note_taker
          */
         private void UpdatePreviewText()
         {
-            char[] delimiters = { ' ' };
+            char[] delimiters = { ' ', '\n', '\r' };
             String[] words = text.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
 
             previewText = "";
