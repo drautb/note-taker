@@ -37,8 +37,8 @@
             this.noteBox = new System.Windows.Forms.GroupBox();
             this.noteModifiedLabel = new System.Windows.Forms.Label();
             this.noteCreatedLabel = new System.Windows.Forms.Label();
-            this.noteTextArea = new System.Windows.Forms.TextBox();
             this.deleteButton = new System.Windows.Forms.Button();
+            this.noteTextArea = new System.Windows.Forms.RichTextBox();
             this.listBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.notesDataGrid)).BeginInit();
             this.noteBox.SuspendLayout();
@@ -130,9 +130,9 @@
             this.noteBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.noteBox.Controls.Add(this.noteTextArea);
             this.noteBox.Controls.Add(this.noteModifiedLabel);
             this.noteBox.Controls.Add(this.noteCreatedLabel);
-            this.noteBox.Controls.Add(this.noteTextArea);
             this.noteBox.Controls.Add(this.deleteButton);
             this.noteBox.Location = new System.Drawing.Point(275, 15);
             this.noteBox.Name = "noteBox";
@@ -148,9 +148,9 @@
             this.noteModifiedLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.noteModifiedLabel.Location = new System.Drawing.Point(296, 467);
             this.noteModifiedLabel.Name = "noteModifiedLabel";
-            this.noteModifiedLabel.Size = new System.Drawing.Size(213, 18);
+            this.noteModifiedLabel.Size = new System.Drawing.Size(71, 18);
             this.noteModifiedLabel.TabIndex = 3;
-            this.noteModifiedLabel.Text = "Last saved on 12/8/12 at 12:05pm";
+            this.noteModifiedLabel.Text = "Last saved";
             // 
             // noteCreatedLabel
             // 
@@ -160,28 +160,9 @@
             this.noteCreatedLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.noteCreatedLabel.Location = new System.Drawing.Point(7, 466);
             this.noteCreatedLabel.Name = "noteCreatedLabel";
-            this.noteCreatedLabel.Size = new System.Drawing.Size(230, 18);
+            this.noteCreatedLabel.Size = new System.Drawing.Size(88, 18);
             this.noteCreatedLabel.TabIndex = 2;
-            this.noteCreatedLabel.Text = "Note created on 12/8/12 at 12:00pm";
-            // 
-            // noteTextArea
-            // 
-            this.noteTextArea.AcceptsReturn = true;
-            this.noteTextArea.AcceptsTab = true;
-            this.noteTextArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.noteTextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.noteTextArea.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noteTextArea.Location = new System.Drawing.Point(7, 22);
-            this.noteTextArea.MinimumSize = new System.Drawing.Size(480, 320);
-            this.noteTextArea.Multiline = true;
-            this.noteTextArea.Name = "noteTextArea";
-            this.noteTextArea.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.noteTextArea.Size = new System.Drawing.Size(646, 436);
-            this.noteTextArea.TabIndex = 1;
-            this.noteTextArea.WordWrap = false;
-            this.noteTextArea.TextChanged += new System.EventHandler(this.noteTextArea_TextChanged);
+            this.noteCreatedLabel.Text = "Note created";
             // 
             // deleteButton
             // 
@@ -194,6 +175,24 @@
             this.deleteButton.Text = "Delete Note";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
+            // noteTextArea
+            // 
+            this.noteTextArea.AcceptsTab = true;
+            this.noteTextArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.noteTextArea.AutoWordSelection = true;
+            this.noteTextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.noteTextArea.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noteTextArea.Location = new System.Drawing.Point(10, 22);
+            this.noteTextArea.MaxLength = 32767;
+            this.noteTextArea.MinimumSize = new System.Drawing.Size(480, 320);
+            this.noteTextArea.Name = "noteTextArea";
+            this.noteTextArea.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.noteTextArea.Size = new System.Drawing.Size(644, 436);
+            this.noteTextArea.TabIndex = 4;
+            this.noteTextArea.Text = "";
             // 
             // MainForm
             // 
@@ -226,12 +225,12 @@
         private System.Windows.Forms.Button newNoteButton;
         private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.Button deleteButton;
-        private System.Windows.Forms.TextBox noteTextArea;
         private System.Windows.Forms.Label noteCreatedLabel;
         private System.Windows.Forms.Label noteModifiedLabel;
         private System.Windows.Forms.DataGridView notesDataGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn textColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDateColumn;
+        private System.Windows.Forms.RichTextBox noteTextArea;
 
 
     }

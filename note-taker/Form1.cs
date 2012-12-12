@@ -68,7 +68,7 @@ namespace note_taker
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
         public static extern IntPtr SendMessage(IntPtr h, int msg, int wParam, int[] lParam);
 
-        public static void SetTabWidth(TextBox textBox, int tabWidth)
+        public static void SetTabWidth(RichTextBox textBox, int tabWidth)
         {
             Graphics g = textBox.CreateGraphics();
 
