@@ -1,3 +1,5 @@
 To Do List:
 - Look/Feel
 	- Allow font to be customizable?
+
+	- Fix note saving with the RTB!!

@@ -35,10 +35,10 @@
             this.newNoteButton = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
             this.noteBox = new System.Windows.Forms.GroupBox();
+            this.noteTextArea = new System.Windows.Forms.RichTextBox();
             this.noteModifiedLabel = new System.Windows.Forms.Label();
             this.noteCreatedLabel = new System.Windows.Forms.Label();
             this.deleteButton = new System.Windows.Forms.Button();
-            this.noteTextArea = new System.Windows.Forms.RichTextBox();
             this.listBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.notesDataGrid)).BeginInit();
             this.noteBox.SuspendLayout();
@@ -140,6 +140,25 @@
             this.noteBox.TabIndex = 2;
             this.noteBox.TabStop = false;
             // 
+            // noteTextArea
+            // 
+            this.noteTextArea.AcceptsTab = true;
+            this.noteTextArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.noteTextArea.AutoWordSelection = true;
+            this.noteTextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.noteTextArea.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noteTextArea.Location = new System.Drawing.Point(10, 22);
+            this.noteTextArea.MaxLength = 32767;
+            this.noteTextArea.MinimumSize = new System.Drawing.Size(480, 320);
+            this.noteTextArea.Name = "noteTextArea";
+            this.noteTextArea.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.noteTextArea.Size = new System.Drawing.Size(644, 436);
+            this.noteTextArea.TabIndex = 4;
+            this.noteTextArea.Text = "";
+            this.noteTextArea.TextChanged += new System.EventHandler(this.noteTextArea_TextChanged);
+            // 
             // noteModifiedLabel
             // 
             this.noteModifiedLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -175,24 +194,6 @@
             this.deleteButton.Text = "Delete Note";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
-            // 
-            // noteTextArea
-            // 
-            this.noteTextArea.AcceptsTab = true;
-            this.noteTextArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.noteTextArea.AutoWordSelection = true;
-            this.noteTextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.noteTextArea.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noteTextArea.Location = new System.Drawing.Point(10, 22);
-            this.noteTextArea.MaxLength = 32767;
-            this.noteTextArea.MinimumSize = new System.Drawing.Size(480, 320);
-            this.noteTextArea.Name = "noteTextArea";
-            this.noteTextArea.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.noteTextArea.Size = new System.Drawing.Size(644, 436);
-            this.noteTextArea.TabIndex = 4;
-            this.noteTextArea.Text = "";
             // 
             // MainForm
             // 
