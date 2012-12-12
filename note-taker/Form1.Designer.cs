@@ -46,6 +46,8 @@
             // 
             // listBox
             // 
+            this.listBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.listBox.Controls.Add(this.notesDataGrid);
             this.listBox.Controls.Add(this.newNoteButton);
             this.listBox.Controls.Add(this.searchBox);
@@ -62,6 +64,8 @@
             this.notesDataGrid.AllowUserToDeleteRows = false;
             this.notesDataGrid.AllowUserToResizeColumns = false;
             this.notesDataGrid.AllowUserToResizeRows = false;
+            this.notesDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.notesDataGrid.BackgroundColor = System.Drawing.SystemColors.Window;
             this.notesDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.notesDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -70,6 +74,7 @@
             this.textColumn,
             this.modifiedDateColumn});
             this.notesDataGrid.Location = new System.Drawing.Point(7, 58);
+            this.notesDataGrid.MinimumSize = new System.Drawing.Size(240, 320);
             this.notesDataGrid.MultiSelect = false;
             this.notesDataGrid.Name = "notesDataGrid";
             this.notesDataGrid.ReadOnly = true;
@@ -101,6 +106,7 @@
             // 
             // newNoteButton
             // 
+            this.newNoteButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.newNoteButton.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newNoteButton.Location = new System.Drawing.Point(7, 466);
             this.newNoteButton.Name = "newNoteButton";
@@ -121,6 +127,9 @@
             // 
             // noteBox
             // 
+            this.noteBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.noteBox.Controls.Add(this.noteModifiedLabel);
             this.noteBox.Controls.Add(this.noteCreatedLabel);
             this.noteBox.Controls.Add(this.noteTextArea);
@@ -133,6 +142,7 @@
             // 
             // noteModifiedLabel
             // 
+            this.noteModifiedLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.noteModifiedLabel.AutoSize = true;
             this.noteModifiedLabel.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.noteModifiedLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -144,6 +154,7 @@
             // 
             // noteCreatedLabel
             // 
+            this.noteCreatedLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.noteCreatedLabel.AutoSize = true;
             this.noteCreatedLabel.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.noteCreatedLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -157,17 +168,24 @@
             // 
             this.noteTextArea.AcceptsReturn = true;
             this.noteTextArea.AcceptsTab = true;
+            this.noteTextArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.noteTextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.noteTextArea.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.noteTextArea.Location = new System.Drawing.Point(7, 22);
+            this.noteTextArea.MinimumSize = new System.Drawing.Size(480, 320);
             this.noteTextArea.Multiline = true;
             this.noteTextArea.Name = "noteTextArea";
+            this.noteTextArea.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.noteTextArea.Size = new System.Drawing.Size(646, 436);
             this.noteTextArea.TabIndex = 1;
+            this.noteTextArea.WordWrap = false;
             this.noteTextArea.TextChanged += new System.EventHandler(this.noteTextArea_TextChanged);
             // 
             // deleteButton
             // 
+            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteButton.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteButton.Location = new System.Drawing.Point(566, 465);
             this.deleteButton.Name = "deleteButton";
@@ -187,7 +205,8 @@
             this.Controls.Add(this.listBox);
             this.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.MinimumSize = new System.Drawing.Size(840, 480);
             this.Name = "MainForm";
             this.Text = "Note Taker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
