@@ -3,6 +3,3 @@ To Do List:
 	- Allow font to be customizable?
 	- Rich Text Editor?
 
-- I don't wait the first note in the list to become selected again every time a new note is created!
-
-
