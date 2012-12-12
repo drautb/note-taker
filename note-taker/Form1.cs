@@ -144,6 +144,12 @@ namespace note_taker
          */
         private void RefreshDisplayNotes()
         {
+            // Save the selected row index
+            int selectedRowIdx = -1;
+            if (notesDataGrid.SelectedRows.Count > 0)
+                selectedRowIdx = notesDataGrid.SelectedRows[0].Index;
+
+            // Refresh the list
             displayNotes.Clear();
 
             String searchText = searchBox.Text;
@@ -152,6 +158,16 @@ namespace note_taker
             {
                 if (n.Text.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
                     displayNotes.Add(n);
+            }
+
+            // Restore the selected row, or close to it if possible
+            if (selectedRowIdx == notesDataGrid.RowCount)
+                selectedRowIdx--;
+
+            foreach (DataGridViewRow row in notesDataGrid.Rows)
+            {
+                if (row.Index == selectedRowIdx)
+                    row.Selected = true;
             }
         }
 
@@ -246,6 +262,7 @@ namespace note_taker
             if (selectedNote != null)
                 selectedNote.Text = noteTextArea.Text;
 
+            // Redraw the note list to show updated previews
             notesDataGrid.Invalidate();
         }
 
